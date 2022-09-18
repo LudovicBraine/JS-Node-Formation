@@ -10,7 +10,10 @@ var manageServer = function (request, response) {
     var extension = thisUrl.pathname.substring(thisUrl.pathname.indexOf('.'), thisUrl.pathname.length);
     var urlQueryString = new URLSearchParams(thisUrl.query)
     manageScenes.init(thisUrl, extension, request, response, urlQueryString)
-    console.log(manageScenes.queryString)
+
+    if (manageScenes.url.pathname !== "/favicon") {
+        manageScenes.generateDataToSend()
+    }
 }
 
 var server = http.createServer(manageServer);
